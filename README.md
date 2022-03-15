@@ -1,18 +1,12 @@
-## Getting Started
+## Dungeon Master
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This is a miniproject for a module in my degree. This is (currently!) a text based adventure game. The objective is to slay all the monsters and escape the dungeon.
 
-## Folder Structure
+## Rules and design
 
-The workspace contains two folders by default, where:
+I am attempting to create this game with the object oriented programming style, following good naming conventions and good design principles for OOP. 
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+The game begins with the player selecting a class, Mage, Warrior or Hunter. Each has varying health attributes and damage, plus a special move that allows the user to gain bonuses based on their class. Players can move around the dungeon, and fight "Bosses", which are monsters with variying health and attack attributes. 
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Players can pick up items and earn gold for monsters slain, which will allow them to buy items in the game. 
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
