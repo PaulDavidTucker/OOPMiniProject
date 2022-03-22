@@ -11,4 +11,8 @@ public interface Actions {
 
     // Allow a player to move the hero
     public void Move(String Direction);
+
+    // Activate a special move for the player.
+    public void Special();
+
 }

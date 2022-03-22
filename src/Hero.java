@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 
 public class Hero implements Actions {
-    private int Health;
-    private int Attack;
+    protected String HeroName;
+    protected int Health;
+    protected int Attack;
     private ArrayList<Item> Inventory = new ArrayList<Item>();
+    protected boolean specialUsed;
 
     // Constructor allows hero class classes to edit the specific values for that
     // class
-    public Hero(int Health, int Attack, ArrayList<Item> Inventory) {
+    public Hero(String heroName, int Health, int Attack, ArrayList<Item> Inventory, boolean specialUsed) {
+        this.HeroName = heroName;
         this.Health = Health;
         this.Attack = Attack;
         this.Inventory = Inventory;
+        this.specialUsed = specialUsed;
     }
 
     @Override
@@ -34,7 +38,15 @@ public class Hero implements Actions {
 
     @Override
     public void Move(String Direction) {
-        // TODO Auto-generated method stub
+        // Move somewhere
+
+    }
+
+    public boolean isSpecialUsed() {
+        return this.specialUsed;
+    }
+
+    public void Special() {
 
     }
 
