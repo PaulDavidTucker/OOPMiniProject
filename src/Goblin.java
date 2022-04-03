@@ -6,19 +6,6 @@ public class Goblin extends Monster {
         super(health, attack, loot);
     }
 
-    @Override
-    public void Attack(String target) {
-
-    }
-
-    @Override
-    public void Heal(int amount) {
-
-    }
-
-    @Override
-    public ArrayList<Item> DropLoot() {
-        return null;
-    }
+    // Methods are in monster superclass to avoid code duplication
 
 }

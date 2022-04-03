@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Monster {
+public class Monster implements MonsterActions {
 
     // Unfinished class
     private int Health;
@@ -13,15 +13,20 @@ public class Monster {
         this.Loot = loot;
     }
 
-    public void Attack(String target) {
-
-    }
-
-    public void Heal(int amount) {
-
-    }
-
     public ArrayList<Item> DropLoot() {
+        return null;
+    }
+
+    @Override
+    public void Heal() {
+        // TODO write method to implement monster healing
+
+    }
+
+    @Override
+    public Hero AttackHero(Hero hero) {
+        // TODO write method to implement attacking a hero and returning the modified
+        // object to the game object.
         return null;
     }
 

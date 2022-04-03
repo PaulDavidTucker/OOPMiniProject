@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Hero implements Actions {
+public class Hero implements PlayerActions {
     protected String HeroName;
     protected int Health;
     protected int Attack;
