@@ -1,3 +1,7 @@
+package Items;
+
+import Game.Item;
+
 public class Sword extends Item {
 
     // Creates a constructor that uses the

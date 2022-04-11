@@ -1,3 +1,5 @@
+package Game;
+
 public interface PlayerActions {
     // Have some way of using items that can alter the health of the current hero
     public void Heal();

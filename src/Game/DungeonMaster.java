@@ -1,5 +1,9 @@
+package Game;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Classes.Mage;
 
 public class DungeonMaster {
     public static void main(String[] args) throws Exception {

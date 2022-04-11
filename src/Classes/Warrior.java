@@ -1,4 +1,9 @@
+package Classes;
+
 import java.util.ArrayList;
+
+import Game.Hero;
+import Game.Item;
 
 public class Warrior extends Hero {
 

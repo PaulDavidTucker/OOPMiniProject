@@ -1,3 +1,5 @@
+package Game;
+
 public interface MonsterActions {
 
     // Create a method that will target a hero and have certain effects on them,
