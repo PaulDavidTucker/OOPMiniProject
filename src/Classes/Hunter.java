@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Game.Hero;
 import Game.Item;
+import Items.Artifacts;
 
 public class Hunter extends Hero {
 
@@ -19,7 +20,9 @@ public class Hunter extends Hero {
             System.out.println("Sorry, your special move has already been used this game!");
         } else {
             System.out.println("SPECIAL MOVE ACTIVATED! BONUS ITEM HAS BEEN AWARDED");
-            // adds the sacred ring to the
+            // adds the sacred ring to the inventory of the user
+            Artifacts newItem = new Artifacts("Ring of Truth", "Ring", 100);
+            // add item to inventory
         }
     }
 }
