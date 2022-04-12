@@ -23,6 +23,7 @@ public class Hunter extends Hero {
             // adds the sacred ring to the inventory of the user
             Artifacts newItem = new Artifacts("Ring of Truth", "Ring", 100);
             // add item to inventory
+            addItem(newItem);
         }
     }
 }

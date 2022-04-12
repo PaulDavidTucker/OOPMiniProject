@@ -48,8 +48,14 @@ public class Hero implements PlayerActions {
         return this.specialUsed;
     }
 
-    public void Special() {
+    // Adds an item to the inventory. This is a destructive method
+    public void addItem(Item item) {
+        this.Inventory.add(item);
+    }
 
+    @Override
+    public void Special() {
+        // Method is overridden in the subclasses hunter, mage and warrior
     }
 
 }

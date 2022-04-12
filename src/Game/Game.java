@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Classes.Hunter;
 import Classes.Mage;
 import Classes.Warrior;
+import Exceptions.NameNotValidException;
 
 public class Game {
     private Player CurrentPlayer;
@@ -32,7 +33,7 @@ public class Game {
         return this.EnemyList;
     }
 
-    public void selectOrCreateCharacter() {
+    public void selectOrCreateCharacter() throws NameNotValidException {
         System.out.println(
                 "Would you like to pick an existing character or create a new character?\nType Existing for and existing Character\nType New for a new character");
         Scanner input = new Scanner(System.in);
@@ -67,7 +68,7 @@ public class Game {
             }
         } else {
             System.out.println("Invalid Input");
-            System.exit(0);
+            throw new NameNotValidException();
         }
 
         this.CurrentPlayer.setCurrentHero(selectedHero);
