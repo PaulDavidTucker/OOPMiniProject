@@ -7,11 +7,12 @@ public class Player {
     private ArrayList<Hero> Characters;
     private Hero currentHero;
 
-    public Player(ArrayList<Hero> hList, Hero currentHero) {
+    public Player(ArrayList<Hero> hList) {
         this.Characters = hList;
-        this.currentHero = currentHero;
+        this.currentHero = null;
     }
 
+    // Adds a created character to the arraylist of heros
     public void addCharacter(Hero hero) {
         if (this.Characters.size() == 0) {
             System.out.println("Adding");
@@ -36,10 +37,6 @@ public class Player {
 
     public Hero getCurrentHero() {
         return currentHero;
-    }
-
-    public void setCharacters(ArrayList<Hero> characters) {
-        Characters = characters;
     }
 
     public void setCurrentHero(Hero currentHero) {
