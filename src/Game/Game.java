@@ -104,4 +104,8 @@ public class Game {
         // returns the object
         return hunter;
     }
+
+    public void incrementLevel() {
+        this.level++;
+    }
 }

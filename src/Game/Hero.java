@@ -2,6 +2,9 @@ package Game;
 
 import java.util.ArrayList;
 
+import Exceptions.ItemNotFoundException;
+import Exceptions.TargetNotFoundException;
+
 public class Hero implements PlayerActions {
     protected String HeroName;
     protected int Health;
@@ -26,14 +29,14 @@ public class Hero implements PlayerActions {
     }
 
     @Override
-    public void PickUp(String target) {
+    public void PickUp(String target) throws ItemNotFoundException {
         // Use the targeted string as the name for item, pick up item and add to
         // inventory
 
     }
 
     @Override
-    public void Attack(String target) {
+    public void Attack(String target) throws TargetNotFoundException {
         // Do damage to a monster, have a monster superclass and create subclasses
 
     }
