@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.*;
 import java.awt.event.*;
 
 //actions taken on the x being clicked

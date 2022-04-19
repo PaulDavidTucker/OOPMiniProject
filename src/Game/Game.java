@@ -48,7 +48,6 @@ public class Game {
     public void selectOrCreateCharacter() throws NameNotValidException {
         // creates a new GUI
         GUI.StartScreen screen = new GUI.StartScreen();
-        ArrayList<Item> invt = new ArrayList<>();
 
         // Adds a listener for the new character
         screen.addNewListener(new ActionListener() {
