@@ -2,6 +2,10 @@ package Game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+
+import GUI.MainWindow;
 
 public class DungeonMaster {
     public static void main(String[] args) throws Exception {
@@ -15,6 +19,13 @@ public class DungeonMaster {
         // NewGame.selectOrCreateCharacter();
 
         GUI.MainWindow mainWindow = new GUI.MainWindow(500, 500);
+        mainWindow.addAttackListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                mainWindow.addText("Helloooo");
+            }
+        });
+
+        // GUI.CreateCharacter create = new GUI.CreateCharacter(500, 500);
     }
 
 }
