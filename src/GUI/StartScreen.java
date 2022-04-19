@@ -17,6 +17,9 @@ public class StartScreen extends Frame {
         // defines the layout
         this.setLayout(new GridLayout(4, 1));
         this.setSize(500, 500);
+        // adds an action for the window closing
+        WindowCloser wc = new WindowCloser();
+        this.addWindowListener(wc);
         // New components
         Text = new Label("Please either select an existing character or create a new one");
         New = new Button("New Character");
