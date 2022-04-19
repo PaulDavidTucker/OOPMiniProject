@@ -16,16 +16,18 @@ public class DungeonMaster {
         Game NewGame = new Game(mainPlayer, 0, eList);
         // updates the player object within this instance of the game to have the
         // character selected
-        // NewGame.selectOrCreateCharacter();
+        NewGame.selectOrCreateCharacter();
 
-        GUI.MainWindow mainWindow = new GUI.MainWindow(500, 500);
-        mainWindow.addAttackListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                mainWindow.addText("Helloooo");
-            }
-        });
+        /*
+         * GUI.MainWindow mainWindow = new GUI.MainWindow(500, 500);
+         * mainWindow.addAttackListener(new ActionListener() {
+         * public void actionPerformed(ActionEvent evt) {
+         * mainWindow.addText("Helloooo");
+         * }
+         * });
+         * 
+         */
 
-        // GUI.CreateCharacter create = new GUI.CreateCharacter(500, 500);
     }
 
 }

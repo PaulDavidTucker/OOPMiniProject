@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.JComboBox;
 
+import Game.Hero;
+
 public class CreateCharacter extends Frame {
 
     private Label name;
@@ -35,6 +37,18 @@ public class CreateCharacter extends Frame {
 
     public void addCreateListener(ActionListener listener) {
         this.submit.addActionListener(listener);
+    }
+
+    public String getSelectorItem() {
+        return this.selector.getSelectedItem().toString();
+    }
+
+    public String getName() {
+        return this.area.getText();
+    }
+
+    public Hero createHero(Hero hero) {
+        return hero;
     }
 
 }
