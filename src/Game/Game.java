@@ -51,13 +51,16 @@ public class Game {
                         switch (Choice) {
                             case "Mage":
                                 createPlayableHero(createMage(Name));
+                                createCharacter.setVisible(false);
                                 break;
 
                             case "Warrior":
                                 createPlayableHero(createWarrior(Name));
+                                createCharacter.setVisible(false);
                                 break;
                             case "Hunter":
                                 createPlayableHero(createHunter(Name));
+                                createCharacter.setVisible(false);
                                 break;
 
                         }
@@ -77,6 +80,7 @@ public class Game {
 
     private void createPlayableHero(Hero hero) {
         this.CurrentPlayer.setCurrentHero(hero);
+        GUI.MainWindow main = new GUI.MainWindow(500, 500);
     }
 
     // Method to create a new mage type

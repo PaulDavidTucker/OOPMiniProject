@@ -13,6 +13,7 @@ public class StartScreen extends Frame {
     public StartScreen() {
         super("Dungeon Master");
         this.setLayout(new GridLayout(4, 1));
+        this.setSize(500, 500);
         Text = new Label("Please either select an existing character or create a new one");
         New = new Button("New Character");
         Existing = new Button("Existing");
