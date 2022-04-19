@@ -108,7 +108,7 @@ public class Game {
 
     public void spawnEnemies(ArrayList<Item> goblinLoot, ArrayList<Item> trollLoot) {
         for (int i = 0; i < this.level; i++) {
-            this.addEnemy(new Goblin(50, 30, goblinLoot));
+            this.addEnemy(new Goblin(50, 20, goblinLoot));
             this.addEnemy(new Troll(100, 10, trollLoot));
         }
         window.addText("This is level " + this.level);
@@ -138,6 +138,7 @@ public class Game {
     public void checkHealthBars() {
         for (int i = 0; i < this.EnemyList.size(); i++) {
             if (EnemyList.get(i).getHealth() <= 0) {
+                window.addText(EnemyList.get(i).getName() + "Has been killed!");
                 EnemyList.remove(i);
             }
         }
@@ -147,6 +148,13 @@ public class Game {
         try {
             this.CurrentPlayer.getCurrentHero().Attack(target, currentGame);
             checkHealthBars();
+            for (int i = 0; i < EnemyList.size(); i++) {
+                window.addText(EnemyList.get(i).getName() + " Attacked you! they did " + EnemyList.get(i).getAttack()
+                        + " damage!");
+                currentGame.CurrentPlayer
+                        .setCurrentHero(EnemyList.get(i).AttackHero(currentGame.CurrentPlayer.getCurrentHero()));
+            }
+            printStats();
         } catch (TargetNotFoundException e) {
             window.clearText();
             window.addText("Target not found");
@@ -204,5 +212,10 @@ public class Game {
         }
 
         return comString;
+    }
+
+    public void printStats() {
+        window.addText("Your health is:" + CurrentPlayer.getCurrentHero().Health);
+        window.addText("Your attack is:" + CurrentPlayer.getCurrentHero().Attack);
     }
 }

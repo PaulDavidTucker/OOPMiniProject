@@ -21,6 +21,10 @@ public class Monster implements MonsterActions {
         return this.Name;
     }
 
+    public int getAttack() {
+        return this.Attack;
+    }
+
     public ArrayList<Item> DropLoot() {
         return this.Loot;
     }
@@ -32,9 +36,8 @@ public class Monster implements MonsterActions {
 
     @Override
     public Hero AttackHero(Hero hero) {
-        // TODO write method to implement attacking a hero and returning the modified
-        // object to the game object.
-        return null;
+        hero.Health -= this.Attack;
+        return hero;
     }
 
     @Override
