@@ -25,7 +25,18 @@ public class DungeonMaster {
         ArrayList<Item> TrollLoot = generateTrollLoot();
         ArrayList<Item> GoblinLoot = generateGoblinLoot();
         NewGame.PlayGame(GoblinLoot, TrollLoot);
-        System.out.println("Here");
+
+        NewGame.window.addText("Welcome to the dungeons, my brave hero!");
+
+        NewGame.window.addAttackListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                NewGame.Attack(NewGame);
+                NewGame.checkHealthBars();
+                if (NewGame.getElist().isEmpty()) {
+                    NewGame.spawnEnemies(GoblinLoot, TrollLoot);
+                }
+            }
+        });
 
     }
 

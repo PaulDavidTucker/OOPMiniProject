@@ -12,10 +12,7 @@ public interface PlayerActions {
     public void PickUp(String target) throws ItemNotFoundException;
 
     // Use a targeting system to deal damage to a player.
-    public void Attack(String target) throws TargetNotFoundException;
-
-    // Allow a player to move the hero
-    public void Move(String Direction);
+    public void Attack(String target, Game currentGame) throws TargetNotFoundException;
 
     // Activate a special move for the player.
     public void Special();

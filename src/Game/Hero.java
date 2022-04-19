@@ -36,14 +36,22 @@ public class Hero implements PlayerActions {
     }
 
     @Override
-    public void Attack(String target) throws TargetNotFoundException {
-        // Do damage to a monster, have a monster superclass and create subclasses
+    public void Attack(String target, Game currentGame) throws TargetNotFoundException {
+        boolean found = false;
+        for (int j = 0; j < currentGame.getElist().size(); j++) {
 
-    }
+            if (currentGame.getElist().get(j).getName().equalsIgnoreCase(target)) {
+                currentGame.getElist().get(j).takeDamage(getAttack());
+                currentGame.window.addText(target + "Took damage!");
+                found = true;
+            }
+            if (found) {
 
-    @Override
-    public void Move(String Direction) {
-        // Move somewhere
+            } else {
+                throw new TargetNotFoundException();
+            }
+
+        }
 
     }
 
@@ -59,6 +67,10 @@ public class Hero implements PlayerActions {
     @Override
     public void Special() {
         // Method is overridden in the subclasses hunter, mage and warrior
+    }
+
+    public int getAttack() {
+        return this.Attack;
     }
 
 }

@@ -37,4 +37,13 @@ public class Monster implements MonsterActions {
         return null;
     }
 
+    @Override
+    public void takeDamage(int amount) {
+        this.Health -= amount;
+    }
+
+    public int getHealth() {
+        return this.Health;
+    }
+
 }

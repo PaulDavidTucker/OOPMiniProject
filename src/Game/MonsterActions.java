@@ -8,4 +8,6 @@ public interface MonsterActions {
 
     // Write a method to add health to the monster.
     public void Heal(int amount);
+
+    public void takeDamage(int amount);
 }

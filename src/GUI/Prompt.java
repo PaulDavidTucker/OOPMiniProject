@@ -24,6 +24,7 @@ public class Prompt extends Frame {
     }
 
     public void activate() {
+        this.add(submit);
         this.setVisible(true);
         this.setSize(500, 500);
         this.setLocationRelativeTo(null); // Centers the window on the screen
