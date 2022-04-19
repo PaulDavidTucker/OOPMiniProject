@@ -16,11 +16,11 @@ import GUI.Prompt;
 import GUI.StartScreen;
 
 public class Game {
-    private Player CurrentPlayer;
+    protected Player CurrentPlayer;
     private int level;
     private ArrayList<Monster> EnemyList = new ArrayList<>();
     private static int GameID;
-    private MainWindow window;
+    protected MainWindow window;
 
     public Game(Player player, int level, ArrayList<Monster> eList) {
         this.CurrentPlayer = player;
@@ -89,16 +89,11 @@ public class Game {
             this.addEnemy(new Goblin(50, 30, goblinLoot));
             this.addEnemy(new Troll(100, 10, trollLoot));
         }
-        this.window.addText("Welcome to the dungeons, my brave hero!");
         window.addText("This is level " + this.level);
         window.addText("New enemies have appeared!");
         window.addText(getMonsterNames(this.EnemyList) + " Have appeared!");
 
-        window.addAttackListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-
-            }
-        });
+        incrementLevel();
         window.addHealListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
 
@@ -111,7 +106,19 @@ public class Game {
         });
     }
 
-    private void Attack() {
+    public void spawnEnemies(ArrayList<Item> goblinLoot, ArrayList<Item> trollLoot) {
+        for (int i = 0; i < this.level; i++) {
+            this.addEnemy(new Goblin(50, 30, goblinLoot));
+            this.addEnemy(new Troll(100, 10, trollLoot));
+        }
+        window.addText("This is level " + this.level);
+        window.addText("New enemies have appeared!");
+        window.addText(getMonsterNames(this.EnemyList) + " Have appeared!");
+
+        incrementLevel();
+    }
+
+    public void Attack(Game currentGame) {
         GUI.Prompt choseTarget = new GUI.Prompt();
         Label label1 = new Label("Enter the target name");
         // Text field
@@ -120,18 +127,30 @@ public class Game {
         choseTarget.add(field);
         choseTarget.addSubmitListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AttackProcess(field.getText());
+                AttackProcess(field.getText(), currentGame);
             }
         });
 
+        choseTarget.activate();
+
     }
 
-    private void AttackProcess(String target) {
+    public void checkHealthBars() {
+        for (int i = 0; i < this.EnemyList.size(); i++) {
+            if (EnemyList.get(i).getHealth() <= 0) {
+                EnemyList.remove(i);
+            }
+        }
+    }
+
+    public void AttackProcess(String target, Game currentGame) {
         try {
-            this.CurrentPlayer.getCurrentHero().Attack(target);
+            this.CurrentPlayer.getCurrentHero().Attack(target, currentGame);
+            checkHealthBars();
         } catch (TargetNotFoundException e) {
-            this.window.clearText();
-            this.window.addText("Target not found!");
+            window.clearText();
+            window.addText("Target not found");
+            window.addText(getMonsterNames(this.EnemyList) + "Are the current enemies in the level");
         }
     }
 
@@ -178,7 +197,7 @@ public class Game {
         this.EnemyList.add(monster);
     }
 
-    private String getMonsterNames(ArrayList<Monster> eList) {
+    public String getMonsterNames(ArrayList<Monster> eList) {
         String comString = "";
         for (int i = 0; i < eList.size(); i++) {
             comString += (eList.get(i).getName() + " ");
