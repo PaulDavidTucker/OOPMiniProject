@@ -7,5 +7,5 @@ public interface MonsterActions {
     public Hero AttackHero(Hero hero);
 
     // Write a method to add health to the monster.
-    public void Heal();
+    public void Heal(int amount);
 }

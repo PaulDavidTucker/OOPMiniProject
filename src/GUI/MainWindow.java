@@ -52,6 +52,7 @@ public class MainWindow extends Frame {
         this.attack.addActionListener(listener);
     }
 
+    // Action for healing
     public void addHealListener(ActionListener listener) {
         this.heal.addActionListener(listener);
     }

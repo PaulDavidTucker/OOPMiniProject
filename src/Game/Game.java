@@ -9,7 +9,10 @@ import Classes.Hunter;
 import Classes.Mage;
 import Classes.Warrior;
 import Exceptions.NameNotValidException;
+import Exceptions.TargetNotFoundException;
 import GUI.CreateCharacter;
+import GUI.MainWindow;
+import GUI.Prompt;
 import GUI.StartScreen;
 
 public class Game {
@@ -17,12 +20,15 @@ public class Game {
     private int level;
     private ArrayList<Monster> EnemyList = new ArrayList<>();
     private static int GameID;
+    private MainWindow window;
 
     public Game(Player player, int level, ArrayList<Monster> eList) {
         this.CurrentPlayer = player;
         this.level = level;
         this.EnemyList = eList;
         GameID++;
+        this.window = new MainWindow(500, 500);
+        this.window.setVisible(false);
     }
 
     public int getGameID() {
@@ -78,9 +84,60 @@ public class Game {
 
     }
 
+    public void PlayGame(ArrayList<Item> goblinLoot, ArrayList<Item> trollLoot) {
+        for (int i = 0; i < this.level; i++) {
+            this.addEnemy(new Goblin(50, 30, goblinLoot));
+            this.addEnemy(new Troll(100, 10, trollLoot));
+        }
+        this.window.addText("Welcome to the dungeons, my brave hero!");
+        window.addText("This is level " + this.level);
+        window.addText("New enemies have appeared!");
+        window.addText(getMonsterNames(this.EnemyList) + " Have appeared!");
+
+        window.addAttackListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+
+            }
+        });
+        window.addHealListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+
+            }
+        });
+        window.addShopListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+
+            }
+        });
+    }
+
+    private void Attack() {
+        GUI.Prompt choseTarget = new GUI.Prompt();
+        Label label1 = new Label("Enter the target name");
+        // Text field
+        TextField field = new TextField("");
+        choseTarget.add(label1);
+        choseTarget.add(field);
+        choseTarget.addSubmitListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                AttackProcess(field.getText());
+            }
+        });
+
+    }
+
+    private void AttackProcess(String target) {
+        try {
+            this.CurrentPlayer.getCurrentHero().Attack(target);
+        } catch (TargetNotFoundException e) {
+            this.window.clearText();
+            this.window.addText("Target not found!");
+        }
+    }
+
     private void createPlayableHero(Hero hero) {
         this.CurrentPlayer.setCurrentHero(hero);
-        GUI.MainWindow main = new GUI.MainWindow(500, 500);
+        this.window.setVisible(true);
     }
 
     // Method to create a new mage type
@@ -115,5 +172,18 @@ public class Game {
 
     public void incrementLevel() {
         this.level++;
+    }
+
+    public void addEnemy(Monster monster) {
+        this.EnemyList.add(monster);
+    }
+
+    private String getMonsterNames(ArrayList<Monster> eList) {
+        String comString = "";
+        for (int i = 0; i < eList.size(); i++) {
+            comString += (eList.get(i).getName() + " ");
+        }
+
+        return comString;
     }
 }
