@@ -8,6 +8,7 @@ public class Prompt extends Frame {
     private TextField input;
     private Button submit;
 
+    // prompt window constructor
     public Prompt() {
         this.setLayout(new GridLayout(0, 2));
         submit = new Button("Submit");
@@ -23,13 +24,16 @@ public class Prompt extends Frame {
         });
     }
 
+    // Sets the size and makes visible, as well as adding the button with preloaded
+    // actions/
     public void activate() {
         this.add(submit);
         this.setVisible(true);
-        this.setSize(500, 500);
+        this.setSize(300, 300);
         this.setLocationRelativeTo(null); // Centers the window on the screen
     }
 
+    // adds a listener
     public void addSubmitListener(ActionListener listener) {
         submit.addActionListener(listener);
     }

@@ -3,6 +3,7 @@ package GUI;
 import java.awt.*;
 import java.awt.event.*;
 
+//Main game window
 public class MainWindow extends Frame {
 
     private TextField output;
@@ -11,17 +12,21 @@ public class MainWindow extends Frame {
     private Button shop;
 
     public MainWindow(int height, int width) {
+        // Uses superclass to built in class frame
         super("Dungeon Master");
         this.setSize(width, height);
         this.setVisible(true);
+        // adds an action for the window closing
         WindowCloser wc = new WindowCloser();
         this.addWindowListener(wc);
         this.output = new TextField();
         this.output.setEditable(false);
+        // creates new buttons
         this.attack = new Button("Attack");
         this.heal = new Button("Heal");
         this.shop = new Button("Shop");
 
+        // Creates panels and adds components to the panel
         Panel p1 = new Panel();
         Panel p2 = new Panel();
         p1.setLayout(new BorderLayout());
@@ -32,6 +37,7 @@ public class MainWindow extends Frame {
         p2.add(shop);
         this.add(p1);
         this.add(p2);
+        // Sets the window layout and adds panels
         this.setLayout(new GridLayout(2, 1));
 
     }

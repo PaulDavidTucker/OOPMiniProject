@@ -1,9 +1,16 @@
 package Exceptions;
 
+//exception
 public class NameNotValidException extends Exception {
 
-    public NameNotValidException() {
+    private String name;
 
+    public NameNotValidException(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 }

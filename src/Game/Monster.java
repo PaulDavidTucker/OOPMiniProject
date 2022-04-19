@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Monster implements MonsterActions {
 
-    // Unfinished class
+    // Superclass for goblin and troll, will add other enemy types
     private String Name;
     private int Health;
     private int Attack;

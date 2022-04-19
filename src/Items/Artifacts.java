@@ -2,6 +2,7 @@ package Items;
 
 import Game.Item;
 
+//subclass of the Item class
 public class Artifacts extends Item {
 
     public Artifacts(String name, String type, int value) {

@@ -2,6 +2,7 @@ package Items;
 
 import Game.Item;
 
+//subclass of the Item class
 public class Potion extends Item {
 
     public Potion(String name, String type, int value) {

@@ -39,11 +39,11 @@ public class Hero implements PlayerActions {
 
     }
 
-    @Override
+    @Override // Overrides from interface and is used in subclasses. destructively edits
     public void Attack(String target, Game currentGame) throws TargetNotFoundException {
         boolean found = false;
         for (int j = 0; j < currentGame.getElist().size(); j++) {
-
+            // Looks at the target and makes it take damage
             if (currentGame.getElist().get(j).getName().equalsIgnoreCase(target)) {
                 currentGame.getElist().get(j).takeDamage(getAttack());
                 currentGame.window.addText(target + "Took damage!");
@@ -52,6 +52,7 @@ public class Hero implements PlayerActions {
             if (found) {
 
             } else {
+                // otherwise throw exception
                 throw new TargetNotFoundException();
             }
 
@@ -59,6 +60,7 @@ public class Hero implements PlayerActions {
 
     }
 
+    // checks to see if special moves are used
     public boolean isSpecialUsed() {
         return this.specialUsed;
     }
@@ -73,6 +75,7 @@ public class Hero implements PlayerActions {
         // Method is overridden in the subclasses hunter, mage and warrior
     }
 
+    // gets the attack of the class
     public int getAttack() {
         return this.Attack;
     }

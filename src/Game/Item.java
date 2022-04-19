@@ -1,5 +1,6 @@
 package Game;
 
+//Abstract class to act as template for items
 public abstract class Item {
     protected String name;
     protected String type;

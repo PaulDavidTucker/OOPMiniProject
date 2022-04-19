@@ -2,6 +2,7 @@ package Items;
 
 import Game.Item;
 
+//subclass of the Item class
 public class Shield extends Item {
 
     public Shield(String name, String type, int value) {

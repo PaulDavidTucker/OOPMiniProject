@@ -2,6 +2,7 @@ package Exceptions;
 
 import Game.Item;
 
+//exception
 public class ItemNotFoundException extends Exception {
     private Item item;
 
