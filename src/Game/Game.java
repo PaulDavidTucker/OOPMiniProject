@@ -2,11 +2,15 @@ package Game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
 
 import Classes.Hunter;
 import Classes.Mage;
 import Classes.Warrior;
 import Exceptions.NameNotValidException;
+import GUI.CreateCharacter;
+import GUI.StartScreen;
 
 public class Game {
     private Player CurrentPlayer;
@@ -34,45 +38,45 @@ public class Game {
     }
 
     public void selectOrCreateCharacter() throws NameNotValidException {
-        System.out.println(
-                "Would you like to pick an existing character or create a new character?\nType Existing for and existing Character\nType New for a new character");
-        Scanner input = new Scanner(System.in);
+        GUI.StartScreen screen = new GUI.StartScreen();
         ArrayList<Item> invt = new ArrayList<>();
-        Hero selectedHero = new Hero("", 0, 0, invt, false);
-        String Choice = input.nextLine();
+        screen.addNewListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                screen.setVisible(false);
+                GUI.CreateCharacter createCharacter = new GUI.CreateCharacter(500, 500);
+                createCharacter.addCreateListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final String Choice = createCharacter.getSelectorItem();
+                        final String Name = createCharacter.getName();
+                        switch (Choice) {
+                            case "Mage":
+                                createPlayableHero(createMage(Name));
+                                break;
 
-        if (Choice.equalsIgnoreCase("Existing")) {
-            // Work in progress when IO is added
-            System.out.println("Currently a feature that is a work in progress");
-        } else if (Choice.equalsIgnoreCase("New")) {
-            System.out.println("Please Pick a class: \nMage\nWarrior\nHunter");
-            Choice = input.nextLine();
-            switch (Choice) {
-                case "Mage":
-                    System.out.println("What is the name of this mysterious mage?");
-                    String name = input.nextLine();
-                    selectedHero = createMage(name);
-                    break;
+                            case "Warrior":
+                                createPlayableHero(createWarrior(Name));
+                                break;
+                            case "Hunter":
+                                createPlayableHero(createHunter(Name));
+                                break;
 
-                case "Warrior":
-                    System.out.println("What is the name of this mysterious Warrior?");
-                    name = input.nextLine();
-                    selectedHero = createWarrior(name);
-                    break;
-                case "Hunter":
-                    System.out.println("What is the name of this mysterious Hunter?");
-                    name = input.nextLine();
-                    selectedHero = creatHunter(name);
-                    break;
+                        }
+                    }
+                });
 
             }
-        } else {
-            System.out.println("Invalid Input");
-            throw new NameNotValidException();
-        }
+        });
 
-        this.CurrentPlayer.setCurrentHero(selectedHero);
+        screen.addExistingListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                screen.showWarning();
+            }
+        });
 
+    }
+
+    private void createPlayableHero(Hero hero) {
+        this.CurrentPlayer.setCurrentHero(hero);
     }
 
     // Method to create a new mage type
@@ -96,7 +100,7 @@ public class Game {
     }
 
     // Method to create a new Warrior type
-    private Hunter creatHunter(String heroName) {
+    private Hunter createHunter(String heroName) {
         // Blank inventory for a new hero
         ArrayList<Item> Inventory = new ArrayList<>();
         // Creates new hero object
