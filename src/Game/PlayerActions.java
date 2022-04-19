@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.ArrayList;
+
 import Exceptions.ItemNotFoundException;
 import Exceptions.TargetNotFoundException;
 
@@ -9,7 +11,7 @@ public interface PlayerActions {
 
     // Have some sort of way to target an item, for example, list nearby items to
     // the player and have the option to target specific items.
-    public void PickUp(String target) throws ItemNotFoundException;
+    public void PickUp(ArrayList<Item> items) throws ItemNotFoundException;
 
     // Use a targeting system to deal damage to a player.
     public void Attack(String target, Game currentGame) throws TargetNotFoundException;

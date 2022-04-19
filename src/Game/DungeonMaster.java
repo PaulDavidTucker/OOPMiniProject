@@ -32,17 +32,39 @@ public class DungeonMaster {
             public void actionPerformed(ActionEvent evt) {
                 NewGame.Attack(NewGame);
                 NewGame.checkHealthBars();
+                NewGame.window
+                        .addText(NewGame.getMonsterNames(NewGame.getElist()) + "Are the current enemies in the level");
                 if (NewGame.getElist().isEmpty()) {
                     NewGame.spawnEnemies(GoblinLoot, TrollLoot);
                 }
+                if (NewGame.CurrentPlayer.getCurrentHero().Health <= 0) {
+                    NewGame.window.clearText();
+                    NewGame.window.addText("YOU HAVE BEEN SLAIN! game over");
+                    System.exit(0);
+                }
+            }
+        });
+
+        NewGame.window.addHealListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                NewGame.window.clearText();
+                NewGame.window.addText("You have been healed");
+                NewGame.CurrentPlayer.getCurrentHero().Heal();
+            }
+        });
+
+        NewGame.window.addShopListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                NewGame.window.clearText();
+                NewGame.window.addText("New feature to be added");
             }
         });
 
     }
 
     public static ArrayList<Item> generateGoblinLoot() {
-        Random rand = new Random(5);
-        int randint = rand.nextInt();
+        Random rand = new Random();
+        int randint = rand.nextInt(5);
         ArrayList<Item> GoblinLoot = new ArrayList<>();
         Item potion = new Potion("Potion of healing", "heal", 100);
         Item sword = new Sword("Sword of valor", 50);
@@ -58,8 +80,8 @@ public class DungeonMaster {
     }
 
     public static ArrayList<Item> generateTrollLoot() {
-        Random rand = new Random(5);
-        int randint = rand.nextInt();
+        Random rand = new Random();
+        int randint = rand.nextInt(5);
         ArrayList<Item> TrollLoot = new ArrayList<>();
         Item potion = new Potion("Potion of healing", "heal", 100);
         Item sword = new Sword("Sword of destiny", 70);

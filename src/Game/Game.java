@@ -8,6 +8,7 @@ import java.awt.event.*;
 import Classes.Hunter;
 import Classes.Mage;
 import Classes.Warrior;
+import Exceptions.ItemNotFoundException;
 import Exceptions.NameNotValidException;
 import Exceptions.TargetNotFoundException;
 import GUI.CreateCharacter;
@@ -94,19 +95,11 @@ public class Game {
         window.addText(getMonsterNames(this.EnemyList) + " Have appeared!");
 
         incrementLevel();
-        window.addHealListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
 
-            }
-        });
-        window.addShopListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-
-            }
-        });
     }
 
     public void spawnEnemies(ArrayList<Item> goblinLoot, ArrayList<Item> trollLoot) {
+        window.clearText();
         for (int i = 0; i < this.level; i++) {
             this.addEnemy(new Goblin(50, 20, goblinLoot));
             this.addEnemy(new Troll(100, 10, trollLoot));
@@ -139,6 +132,12 @@ public class Game {
         for (int i = 0; i < this.EnemyList.size(); i++) {
             if (EnemyList.get(i).getHealth() <= 0) {
                 window.addText(EnemyList.get(i).getName() + "Has been killed!");
+                try {
+                    CurrentPlayer.getCurrentHero().PickUp(EnemyList.get(i).DropLoot());
+                    window.addText("Enemy has dropped loot!");
+                } catch (ItemNotFoundException e) {
+                    window.addText("Items not found!");
+                }
                 EnemyList.remove(i);
             }
         }
@@ -217,5 +216,9 @@ public class Game {
     public void printStats() {
         window.addText("Your health is:" + CurrentPlayer.getCurrentHero().Health);
         window.addText("Your attack is:" + CurrentPlayer.getCurrentHero().Attack);
+        window.addText("Within your inventory you have: ");
+        for (int i = 0; i < this.CurrentPlayer.getCurrentHero().Inventory.size(); i++) {
+            window.addText(this.CurrentPlayer.getCurrentHero().Inventory.get(i).getName());
+        }
     }
 }

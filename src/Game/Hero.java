@@ -9,7 +9,7 @@ public class Hero implements PlayerActions {
     protected String HeroName;
     protected int Health;
     protected int Attack;
-    private ArrayList<Item> Inventory = new ArrayList<Item>();
+    protected ArrayList<Item> Inventory = new ArrayList<Item>();
     protected boolean specialUsed;
 
     // Constructor allows hero class classes to edit the specific values for that
@@ -26,12 +26,16 @@ public class Hero implements PlayerActions {
     public void Heal() {
         // Check inventory for health giving items, then if you have one, use the
         // highest health giver first. Then use increase health method
+        this.Health += 30;
     }
 
     @Override
-    public void PickUp(String target) throws ItemNotFoundException {
-        // Use the targeted string as the name for item, pick up item and add to
+    public void PickUp(ArrayList<Item> items) throws ItemNotFoundException {
+        // Use the targeted array as the name for item, pick up item and add to
         // inventory
+        for (int i = 0; i < items.size(); i++) {
+            this.Inventory.add(items.get(i));
+        }
 
     }
 
